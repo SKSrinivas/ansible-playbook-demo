@@ -1,15 +1,30 @@
 {
-  "name": "Ansible Development Environment",
+  "name": "Ansible Dev Environment",
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "extensions": [
-    "ms-azuretools.vscode-docker",
-    "redhat.ansible",
-    "ms-python.python"
-  ],
   "settings": {
     "terminal.integrated.shell.linux": "/bin/bash"
   },
-  "postCreateCommand": "ansible --version"
+  "extensions": [
+    "ms-azuretools.vscode-docker",
+    "hashicorp.terraform",
+    "ms-python.python",
+    "redhat.ansible"
+  ],
+  "postCreateCommand": "pip install -r requirements.txt",
+  "forwardPorts": [
+    8080, // Apache Web Server
+    3306, // MySQL
+    5000, // Python Flask App
+    3000 // Node.js App
+  ],
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspace,type=bind"
+  ],
+  "remoteUser": "root",
+  "features": {
+    "docker-in-docker": "latest"
+  },
+  "initializeCommand": "echo 'Welcome to your Ansible development environment!'"
 }
