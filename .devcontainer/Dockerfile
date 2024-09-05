@@ -29,6 +29,7 @@ RUN apt-get update && apt-get install -y \
     npm \
     docker.io \
     jq \
+    dbus \
     && apt-get clean
 
 # Install Ansible
@@ -64,8 +65,8 @@ RUN pip install --upgrade pip && \
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Add docker to the sudoers group
-RUN usermod -aG docker $USER
+# Add docker to the sudoers group (remove usermod for Docker to avoid error)
+# RUN usermod -aG docker $USER
 
 # Set the locale
 ENV LC_ALL=C.UTF-8
