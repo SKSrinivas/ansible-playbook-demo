@@ -1,0 +1,15 @@
+{
+  "name": "Ansible Development Environment",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "extensions": [
+    "ms-azuretools.vscode-docker",
+    "redhat.ansible",
+    "ms-python.python"
+  ],
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "postCreateCommand": "ansible --version"
+}
